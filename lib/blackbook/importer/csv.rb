@@ -1,5 +1,3 @@
-require 'fastercsv'
-
 ##
 # Imports contacts from a CSV file
 

@@ -1,5 +1,5 @@
 Blackbook
-http://github.com/purzelrakete/blackbook/tree/master
+http://github.com/cheald/blackbook/tree/master
 
 == DESCRIPTION:
   
@@ -15,6 +15,9 @@ Import:
 * Gmail
 * Hotmail
 * Yahoo! Mail
+* Freenet
+* GMX
+* Web.de
 
 Export:
 * Simple hash (default)
@@ -36,13 +39,12 @@ If you create an additional importer or exporter - or simply find a bug - please
 
 == REQUIREMENTS:
 
-* Mechanize and its dependencies, for interacting with online providers
-* Fastercsv for reading CSV, Mechanize >= 0.7.0 for page scraping
+* Mechanize >= 0.9.2 and its dependencies, for interacting with online providers
 
 == INSTALL:
 
 1. gem sources -a http://gems.github.com
-2. sudo gem install purzelrakete-blackbook
+2. sudo gem install cheald-blackbook
 
 == THANKS:
 
