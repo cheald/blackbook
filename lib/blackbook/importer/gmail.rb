@@ -1,3 +1,4 @@
+require 'kconv'
 require 'blackbook/importer/page_scraper'
 
 if RUBY_VERSION > "1.9"    
@@ -60,7 +61,8 @@ class Blackbook::Importer::Gmail < Blackbook::Importer::PageScraper
 
 	contacts = []
     csv = agent.get('https://mail.google.com/mail/contacts/data/export?exportType=ALL&out=GMAIL_CSV')
-	FCSV.parse(csv.body) do |row|
+	body = Kconv.toutf8(csv.body)
+	FCSV.parse(body) do |row|
 		next if row[0] == "Name" and row[1] == "E-mail"
 		contacts << {:name => row[0], :email => row[1]} unless row[1].blank?
 	end
