@@ -27,7 +27,12 @@ class Blackbook::Importer::Aol < Blackbook::Importer::PageScraper
     form.password = options[:password]
     page = agent.submit(form, form.buttons.first)
 
-    raise( Blackbook::BadCredentialsError, "That username and password was not accepted. Please check them and try again." ) if page.body =~ /Invalid Screen Name or Password. Please try again./
+    case page.body
+    when /Invalid Screen Name or Password. Please try again./
+      raise( Blackbook::BadCredentialsError, "That username and password was not accepted. Please check them and try again." )
+    when /Terms of Service/
+      raise( Blackbook::LegacyAccount, "Your AOL account is not setup for WebMail. Please signup: http://webmail.aol.com")
+    end
 
     base_uri = page.body.scan(/^var gSuccessPath = \"(.+)\";/).first.first
     raise( Blackbook::BadCredentialsError, "You do not appear to be signed in." ) unless base_uri

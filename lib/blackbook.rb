@@ -8,6 +8,7 @@ class Blackbook
   
   class BlackbookError < ::StandardError; end
   class BadCredentialsError < BlackbookError; end
+  class LegacyAccount < BlackbookError; end
   
   attr_accessor :importers
   attr_accessor :exporters
